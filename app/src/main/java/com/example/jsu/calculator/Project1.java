@@ -18,7 +18,10 @@ public class Project1 extends AppCompatActivity {
     private double secondNumber;
     private double result;
     private String value;
-    private Button b;
+    private boolean addButtonFlag;
+    private boolean subButtonFlag;
+    private boolean multButtonFlag;
+    private boolean divButtonFlag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,7 @@ public class Project1 extends AppCompatActivity {
         setContentView(R.layout.activity_project1);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -47,8 +51,99 @@ public class Project1 extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_project1, menu);
         return true;
     }
+    
+    public void onClick(View v) {
 
-    public void oneButtonClicked(View v) {
+        String id = (v.getResources().getResourceName(v.getId())).split("/")[1];
+
+        switch (id) {
+
+            case "addButton":
+                addButtonClicked();
+                break;
+
+            case "subtractButton":
+                subButtonClicked();
+                break;
+
+            case "divisionButton":
+                divisionButtonClicked();
+                break;
+
+            case "multiplyButton":
+                multiplyButtonClicked();
+                break;
+
+            case "percentButton":
+                percentButtonClicked();
+                break;
+
+            case "squareRootButton":
+                sqrtButtonClicked();
+                break;
+
+            case "clearButton":
+                clearButtonClicked();
+                break;
+
+            case "equalButton":
+                equalButtonClicked();
+                break;
+
+            case "decimalButton":
+                decimalButtonClicked();
+                break;
+
+            case "signButton":
+                signButtonClicked();
+                break;
+
+            case "zeroButton":
+                zeroButtonClicked();
+                break;
+
+            case "oneButton":
+                oneButtonClicked();
+                break;
+
+            case "twoButton":
+                twoButtonClicked();
+                break;
+
+            case "threeButton":
+                threeButtonClicked();
+                break;
+
+            case "fourButton":
+                fourButtonClicked();
+                break;
+
+            case "fiveButton":
+                fiveButtonClicked();
+                break;
+
+            case "sixButton":
+                sixButtonClicked();
+                break;
+
+            case "sevenButton":
+                sevenButtonClicked();
+                break;
+
+            case "eightButton":
+                eightButtonClicked();
+                break;
+
+            case "nineButton":
+                nineButtonClicked();
+                break;
+
+            default:
+                ;
+        }
+    }
+
+    public void oneButtonClicked() {
 
         TextView o = (TextView) findViewById(R.id.outputLabel);
 
@@ -65,7 +160,7 @@ public class Project1 extends AppCompatActivity {
         }
     }
 
-    public void twoButtonClicked(View v) {
+    public void twoButtonClicked() {
 
         TextView o = (TextView) findViewById(R.id.outputLabel);
 
@@ -82,7 +177,7 @@ public class Project1 extends AppCompatActivity {
         }
     }
 
-    public void threeButtonClicked(View v) {
+    public void threeButtonClicked() {
 
         TextView o = (TextView) findViewById(R.id.outputLabel);
 
@@ -99,7 +194,7 @@ public class Project1 extends AppCompatActivity {
         }
     }
 
-    public void fourButtonClicked(View v) {
+    public void fourButtonClicked() {
 
         TextView o = (TextView) findViewById(R.id.outputLabel);
 
@@ -116,7 +211,7 @@ public class Project1 extends AppCompatActivity {
         }
     }
 
-    public void fiveButtonClicked(View v) {
+    public void fiveButtonClicked() {
 
         TextView o = (TextView) findViewById(R.id.outputLabel);
 
@@ -133,7 +228,7 @@ public class Project1 extends AppCompatActivity {
         }
     }
 
-    public void sixButtonClicked(View v) {
+    public void sixButtonClicked() {
 
         TextView o = (TextView) findViewById(R.id.outputLabel);
 
@@ -150,7 +245,7 @@ public class Project1 extends AppCompatActivity {
         }
     }
 
-    public void sevenButtonClicked(View v) {
+    public void sevenButtonClicked() {
 
         TextView o = (TextView) findViewById(R.id.outputLabel);
 
@@ -167,7 +262,7 @@ public class Project1 extends AppCompatActivity {
         }
     }
 
-    public void eightButtonClicked(View v) {
+    public void eightButtonClicked() {
 
         TextView o = (TextView) findViewById(R.id.outputLabel);
 
@@ -184,7 +279,7 @@ public class Project1 extends AppCompatActivity {
         }
     }
 
-    public void nineButtonClicked(View v) {
+    public void nineButtonClicked() {
 
         TextView o = (TextView) findViewById(R.id.outputLabel);
 
@@ -201,7 +296,7 @@ public class Project1 extends AppCompatActivity {
         }
     }
 
-    public void zeroButtonClicked(View v) {
+    public void zeroButtonClicked() {
 
         TextView o = (TextView) findViewById(R.id.outputLabel);
 
@@ -218,25 +313,55 @@ public class Project1 extends AppCompatActivity {
         }
     }
 
-    public void clearButtonClicked(View v) {
+    public void clearButtonClicked() {
 
         TextView o = (TextView) findViewById(R.id.outputLabel);
 
-        o.setText("");
+        o.setText("0");
 
         firstNumber = 0;
         secondNumber = 0;
         result = 0;
+        addButtonFlag = false;
+        subButtonFlag = false;
+        multButtonFlag = false;
+        divButtonFlag = false;
     }
 
-    public void equalButtonClicked(View v) {
+    public void equalButtonClicked() {
 
         TextView o = (TextView) findViewById(R.id.outputLabel);
 
+        secondNumber = Double.parseDouble(o.getText().toString());
+
+        if (addButtonFlag == true) {
+            result = firstNumber + secondNumber;
+            addButtonFlag = false;
+        }
+
+        else if (subButtonFlag == true) {
+            result = firstNumber - secondNumber;
+            subButtonFlag = false;
+        }
+        else if (multButtonFlag == true) {
+            result = firstNumber * secondNumber;
+            multButtonFlag = false;
+        }
+
+        else if (divButtonFlag == true) {
+            result = firstNumber / secondNumber;
+            divButtonFlag = false;
+        }
+
+
         o.setText(String.valueOf(result));
+
+        result = 0;
+        firstNumber = 0;
+        secondNumber = 0;
     }
 
-    public void signButtonClicked(View v) {
+    public void signButtonClicked() {
 
         TextView o = (TextView) findViewById(R.id.outputLabel);
 
@@ -269,7 +394,7 @@ public class Project1 extends AppCompatActivity {
         }
     }
 
-    public void decimalButtonClicked(View v) {
+    public void decimalButtonClicked() {
 
         TextView o = (TextView) findViewById(R.id.outputLabel);
 
@@ -286,7 +411,7 @@ public class Project1 extends AppCompatActivity {
 
     }
 
-    public void sqrtButtonClicked(View v) {
+    public void sqrtButtonClicked() {
 
         TextView o = (TextView) findViewById(R.id.outputLabel);
 
@@ -306,16 +431,36 @@ public class Project1 extends AppCompatActivity {
 
     }
 
-    public void percentButtonClicked(View v) {
+    public void percentButtonClicked() {
 
         TextView o = (TextView) findViewById(R.id.outputLabel);
 
         value = o.getText().toString();
 
+        if (value == "" || value == "0" || firstNumber == 0)
+            ;
+
+        else {
+
+            secondNumber = Double.parseDouble(value);
+
+            if (multButtonFlag == true || divButtonFlag == true) {
+
+                secondNumber = secondNumber / 100;
+            }
+
+            else {
+
+                secondNumber = firstNumber * (secondNumber / 100);
+            }
+
+            o.setText(String.valueOf(secondNumber));
+        }
 
     }
 
-    public void addButtonClicked(View v) {
+
+    public void addButtonClicked() {
 
         TextView o = (TextView) findViewById(R.id.outputLabel);
 
@@ -325,17 +470,84 @@ public class Project1 extends AppCompatActivity {
             ;
         }
 
+        else if (addButtonFlag == true) {
+
+            secondNumber = Double.parseDouble(value);
+
+            firstNumber = firstNumber + secondNumber;
+
+            secondNumber = 0;
+
+            o.setText("");
+
+            subButtonFlag = false;
+            multButtonFlag = false;
+            divButtonFlag = false;
+        }
+
+        else if (subButtonFlag == true) {
+
+            secondNumber = Double.parseDouble(value);
+
+            firstNumber = firstNumber - secondNumber;
+
+            secondNumber = 0;
+
+            o.setText("");
+
+            addButtonFlag = true;
+            subButtonFlag = false;
+            multButtonFlag = false;
+            divButtonFlag = false;
+        }
+
+        else if (multButtonFlag == true) {
+
+            secondNumber = Double.parseDouble(value);
+
+            firstNumber = firstNumber * secondNumber;
+
+            secondNumber = 0;
+
+            o.setText("");
+
+            addButtonFlag = true;
+            subButtonFlag = false;
+            multButtonFlag = false;
+            divButtonFlag = false;
+        }
+
+        else if (divButtonFlag == true) {
+
+            secondNumber = Double.parseDouble(value);
+
+            firstNumber = firstNumber - secondNumber;
+
+            secondNumber = 0;
+
+            o.setText("");
+
+            addButtonFlag = true;
+            subButtonFlag = false;
+            multButtonFlag = false;
+            divButtonFlag = false;
+        }
+
         else {
+
+
 
             firstNumber = Double.parseDouble(value);
 
             o.setText("");
 
+            addButtonFlag = true;
+
 
         }
     }
 
-    public void subButtonClicked(View v) {
+    public void subButtonClicked() {
 
         TextView o = (TextView) findViewById(R.id.outputLabel);
 
@@ -345,17 +557,83 @@ public class Project1 extends AppCompatActivity {
             ;
         }
 
+        else if (addButtonFlag == true) {
+
+            secondNumber = Double.parseDouble(value);
+
+            firstNumber = firstNumber + secondNumber;
+
+            secondNumber = 0;
+
+            o.setText("");
+
+            addButtonFlag = false;
+            subButtonFlag = true;
+            multButtonFlag = false;
+            divButtonFlag = false;
+        }
+
+        else if (subButtonFlag == true) {
+
+            secondNumber = Double.parseDouble(value);
+
+            firstNumber = firstNumber - secondNumber;
+
+            secondNumber = 0;
+
+            o.setText("");
+
+            addButtonFlag = false;
+            subButtonFlag = true;
+            multButtonFlag = false;
+            divButtonFlag = false;
+        }
+
+        else if (multButtonFlag == true) {
+
+            secondNumber = Double.parseDouble(value);
+
+            firstNumber = firstNumber * secondNumber;
+
+            secondNumber = 0;
+
+            o.setText("");
+
+            addButtonFlag = false;
+            subButtonFlag = true;
+            multButtonFlag = false;
+            divButtonFlag = false;
+        }
+
+        else if (divButtonFlag == true) {
+
+            secondNumber = Double.parseDouble(value);
+
+            firstNumber = firstNumber - secondNumber;
+
+            secondNumber = 0;
+
+            o.setText("");
+
+            addButtonFlag = false;
+            subButtonFlag = true;
+            multButtonFlag = false;
+            divButtonFlag = false;
+        }
+
         else {
 
             firstNumber = Double.parseDouble(value);
 
             o.setText("");
 
+            subButtonFlag = true;
+
 
         }
     }
 
-    public void multiplyButtonClicked(View v) {
+    public void multiplyButtonClicked() {
 
         TextView o = (TextView) findViewById(R.id.outputLabel);
 
@@ -365,17 +643,83 @@ public class Project1 extends AppCompatActivity {
             ;
         }
 
+        else if (addButtonFlag == true) {
+
+            secondNumber = Double.parseDouble(value);
+
+            firstNumber = firstNumber + secondNumber;
+
+            secondNumber = 0;
+
+            o.setText("");
+
+            addButtonFlag = false;
+            subButtonFlag = false;
+            multButtonFlag = true;
+            divButtonFlag = false;
+        }
+
+        else if (subButtonFlag == true) {
+
+            secondNumber = Double.parseDouble(value);
+
+            firstNumber = firstNumber - secondNumber;
+
+            secondNumber = 0;
+
+            o.setText("");
+
+            addButtonFlag = false;
+            subButtonFlag = false;
+            multButtonFlag = true;
+            divButtonFlag = false;
+        }
+
+        else if (multButtonFlag == true) {
+
+            secondNumber = Double.parseDouble(value);
+
+            firstNumber = firstNumber * secondNumber;
+
+            secondNumber = 0;
+
+            o.setText("");
+
+            addButtonFlag = false;
+            subButtonFlag = false;
+            multButtonFlag = true;
+            divButtonFlag = false;
+        }
+
+        else if (divButtonFlag == true) {
+
+            secondNumber = Double.parseDouble(value);
+
+            firstNumber = firstNumber - secondNumber;
+
+            secondNumber = 0;
+
+            o.setText("");
+
+            addButtonFlag = false;
+            subButtonFlag = false;
+            multButtonFlag = true;
+            divButtonFlag = false;
+        }
+
         else {
 
             firstNumber = Double.parseDouble(value);
 
             o.setText("");
 
+            multButtonFlag = true;
+
 
         }
     }
 
-    public void divisionButtonClicked(View v) {
+    public void divisionButtonClicked() {
 
         TextView o = (TextView) findViewById(R.id.outputLabel);
 
@@ -385,11 +729,77 @@ public class Project1 extends AppCompatActivity {
             ;
         }
 
+        else if (addButtonFlag == true) {
+
+            secondNumber = Double.parseDouble(value);
+
+            firstNumber = firstNumber + secondNumber;
+
+            secondNumber = 0;
+
+            o.setText("");
+
+            addButtonFlag = false;
+            subButtonFlag = false;
+            multButtonFlag = false;
+            divButtonFlag = true;
+        }
+
+        else if (subButtonFlag == true) {
+
+            secondNumber = Double.parseDouble(value);
+
+            firstNumber = firstNumber - secondNumber;
+
+            secondNumber = 0;
+
+            o.setText("");
+
+            addButtonFlag = false;
+            subButtonFlag = false;
+            multButtonFlag = false;
+            divButtonFlag = true;
+        }
+
+        else if (multButtonFlag == true) {
+
+            secondNumber = Double.parseDouble(value);
+
+            firstNumber = firstNumber * secondNumber;
+
+            secondNumber = 0;
+
+            o.setText("");
+
+            addButtonFlag = false;
+            subButtonFlag = false;
+            multButtonFlag = false;
+            divButtonFlag = true;
+        }
+
+        else if (divButtonFlag == true) {
+
+            secondNumber = Double.parseDouble(value);
+
+            firstNumber = firstNumber - secondNumber;
+
+            secondNumber = 0;
+
+            o.setText("");
+
+            addButtonFlag = false;
+            subButtonFlag = false;
+            multButtonFlag = false;
+            divButtonFlag = true;
+        }
+
         else {
 
             firstNumber = Double.parseDouble(value);
 
             o.setText("");
+
+            divButtonFlag = true;
 
 
         }
